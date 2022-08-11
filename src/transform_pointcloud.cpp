@@ -1,3 +1,12 @@
+/**
+ * transform_pointcloud
+ *
+ * Copyright 2018 Atsushi Watanabe, Kenzaburo Miyawaki
+ * Copyright 2022 Hiroto Horimoto
+ *
+ * LICENSE is BSD
+ **/
+
 #include <ros/ros.h>
 #include <tf/transform_listener.h>
 #include <pcl_ros/point_cloud.h>
