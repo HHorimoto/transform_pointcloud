@@ -2,9 +2,12 @@
 
 **This package transforms point cloud from one link to the other link.**
 
+![melodic workflow](https://github.com/HHorimoto/transform_pointcloud/actions/workflows/melodic_build.yml/badge.svg)
+![noetic workflow](https://github.com/HHorimoto/transform_pointcloud/actions/workflows/noetic_build.yml/badge.svg)
+
 ## Requirement
-+ Ubuntu 18.04
-+ ROS (Melodic)
++ Ubuntu 18.04 and 20.04
++ ROS (Melodic and Noetic)
 
 ## Set Up
 1. Download `transform_pointcloud` package.
