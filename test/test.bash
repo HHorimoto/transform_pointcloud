@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2018 Hiroto Horimoto
+# SPDX-License-Identifier: BSD-3-Clause
+
 ### Get rosbag ###
 wget "https://drive.google.com/uc?export=download&id=1MtkzAMVezawFd92f-6CYOH20NQbUgHW3" -O rosbag.bag
 

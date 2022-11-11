@@ -1,11 +1,11 @@
-/**
- * transform_pointcloud
- *
- * Copyright 2018 Atsushi Watanabe, Kenzaburo Miyawaki
- * Copyright 2022 Hiroto Horimoto
- *
- * LICENSE is BSD
- **/
+// SPDX-FileCopyrightText: 2018 Hiroto Horimoto
+// SPDX-License-Identifier: BSD-3-Clause
+
+// Some lines are derived from https://github.com/KMiyawaki/rsj_pointcloud_test.
+// Here is the original LICENSE for rsj_pointcloud_test.
+// SPDX-FileCopyrightText: 2018 Atsushi Watanabe, Kenzaburo Miyawaki
+// SPDX-License-Identifier: BSD-3-Clause
+
 
 #include <ros/ros.h>
 #include <tf/transform_listener.h>

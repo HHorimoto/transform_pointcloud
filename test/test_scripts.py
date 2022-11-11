@@ -1,5 +1,8 @@
 #!/usr/bin/env python2
 
+# SPDX-FileCopyrightText: 2018 Hiroto Horimoto
+# SPDX-License-Identifier: BSD-3-Clause
+
 import roslaunch
 import rospy
 import rospkg
