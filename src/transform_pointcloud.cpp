@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 Hiroto Horimoto
+// SPDX-FileCopyrightText: 2022 Hiroto Horimoto
 // SPDX-License-Identifier: BSD-3-Clause
 
 // Some lines are derived from https://github.com/KMiyawaki/rsj_pointcloud_test.

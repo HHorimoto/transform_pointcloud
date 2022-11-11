@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 
-# SPDX-FileCopyrightText: 2018 Hiroto Horimoto
+# SPDX-FileCopyrightText: 2022 Hiroto Horimoto
 # SPDX-License-Identifier: BSD-3-Clause
 
 import roslaunch
