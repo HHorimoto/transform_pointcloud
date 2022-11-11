@@ -1,0 +1,15 @@
+<launch>
+    <arg name="topic_in" default="/velodyne_points"/>
+    <arg name="topic_out" default="/tf_cloud"/>
+    <arg name="target_frame" default="/base_link"/>
+    <node pkg="transform_pointcloud" name="transform_pointcloud" type="transform_pointcloud" output="screen">
+        <param name="topic_in" value="$(arg topic_in)"/>
+        <param name="topic_out" value="$(arg topic_out)"/>
+        <param name="target_frame" value="$(arg target_frame)"/>
+    </node>
+
+    <arg name="bag" default="rosbag" />
+    <arg name="bag_path" default="$(find transform_pointcloud)/$(arg bag).bag" />
+    <node name="playbag" pkg="rosbag" type="play" args="--clock $(arg bag_path)" required="false" />
+
+</launch>
