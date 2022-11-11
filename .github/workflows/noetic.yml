@@ -1,10 +1,10 @@
-name: ROS melodic build workflow
+name: ROS noetic build test
 
 on: push
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     env:
       CATKIN_WS: /home/runner/work/catkin_ws
     steps:
@@ -13,27 +13,27 @@ jobs:
     - name: Setup ROS
       uses: ros-tooling/setup-ros@v0.2
       with:
-        required-ros-distributions: melodic
+        required-ros-distributions: noetic
 
     - name: Install catkin tool
-      run: sudo apt-get install python-catkin-tools
+      run: sudo apt-get install python3-catkin-tools
 
     - name: Init workspace
       run: |
-        source /opt/ros/melodic/setup.bash
+        source /opt/ros/noetic/setup.bash
         mkdir -p ${CATKIN_WS}/src
         ln -s ${GITHUB_WORKSPACE} ${CATKIN_WS}/src/
 
     - name: pre build
       run: |
-        source /opt/ros/melodic/setup.bash
+        source /opt/ros/noetic/setup.bash
         cd ${CATKIN_WS}/src/transform_pointcloud
         git submodule update --init --recursive
         rosdep update
         rosdep install -i -y --from-paths ./
 
-    - name: build
+    - name: Build test
       run: |
-        source /opt/ros/melodic/setup.bash
+        source /opt/ros/noetic/setup.bash
         cd ${CATKIN_WS}
         catkin build
