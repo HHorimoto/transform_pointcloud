@@ -42,6 +42,6 @@ $ roslaunch transform_pointcloud transform_pointcloud.launch
 
 + ***target_frame*** : link name of transform target.
     default : `/base_link`
+## License
 
-## References
-[1] Atsushi Watanabe, Kenzaburo Miyawaki, 2018. https://github.com/KMiyawaki/rsj_pointcloud_test (accessed 2022 Aug 10)
+Distributed under the BSD-3-Clause License. See `LICENSE` for more information.
