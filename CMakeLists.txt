@@ -11,10 +11,11 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package()
 
 include_directories(
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(${PROJECT_NAME} src/transform_pointcloud.cpp)
-target_link_libraries(${PROJECT_NAME}
+add_executable(transform_pointcloud_node src/transform_pointcloud_node.cpp)
+target_link_libraries(transform_pointcloud_node
   ${catkin_LIBRARIES}
 )

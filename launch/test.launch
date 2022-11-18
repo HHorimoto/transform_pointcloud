@@ -2,7 +2,7 @@
     <arg name="topic_in" default="/velodyne_points"/>
     <arg name="topic_out" default="/tf_cloud"/>
     <arg name="target_frame" default="/base_link"/>
-    <node pkg="transform_pointcloud" name="transform_pointcloud" type="transform_pointcloud" output="screen">
+    <node pkg="transform_pointcloud" name="transform_pointcloud_node" type="transform_pointcloud_node" output="screen">
         <param name="topic_in" value="$(arg topic_in)"/>
         <param name="topic_out" value="$(arg topic_out)"/>
         <param name="target_frame" value="$(arg target_frame)"/>
