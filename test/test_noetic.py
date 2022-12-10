@@ -55,7 +55,7 @@ def test_node():
     roslaunch.configure_logging(uuid)
     r = rospkg.RosPack()
     p = r.get_path('transform_pointcloud')
-    path = p + "/launch/test.launch"
+    path = p + "/test/test.launch"
     launch = roslaunch.parent.ROSLaunchParent(uuid, [path])
 
     launch.start() # Launch test

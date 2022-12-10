@@ -51,7 +51,7 @@ I belive that you can see `Success` not `Fail`.
 
 ```shell
 $ roscd transform_pointcloud
-$ bash -xv test/test_melodic.bash # or test_noetic.bash
+$ bash -xv test/test.bash
 # You can see result.
 $ killall -9 rosmaster # kill roscore
 ```

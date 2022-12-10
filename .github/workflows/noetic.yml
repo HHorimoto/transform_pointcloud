@@ -44,4 +44,4 @@ jobs:
     - name: Run test
       run: |
         source ${CATKIN_WS}/devel/setup.bash
-        bash -xv ./test/test_noetic.bash
+        bash -xv ./test/test.bash
