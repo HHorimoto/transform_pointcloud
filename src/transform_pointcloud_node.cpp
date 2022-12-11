@@ -11,6 +11,8 @@ namespace transform_pointcloud
     topic_in_ = declare_parameter("topic_in", "/velodyne_points");
     topic_out_ = declare_parameter("topic_out", "/tf_cloud");
 
+    RCLCPP_INFO(this->get_logger(), "target_frame:[%s], topic_i:[%s], topic_out:[%s]", target_frame_.c_str(), topic_in_.c_str(), topic_out_.c_str());
+
     publisher_ = this->create_publisher<PointCloud2>(topic_out_, 10);
     subscription_ = this->create_subscription<PointCloud2>(topic_in_, 10, std::bind(&TransformPointcloudNode::topic_callback, this, std::placeholders::_1));
 

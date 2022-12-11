@@ -7,7 +7,7 @@
   <maintainer email="81685394+HHorimoto@users.noreply.github.com">HHorimoto</maintainer>
   <license>BSD</license>
 
-  <buildtool_depend>ament_cmake_auto</buildtool_depend>
+  <buildtool_depend>ament_package</buildtool_depend>
 
   <depend>pcl_ros</depend>
   <depend>geometry_msgs</depend>
