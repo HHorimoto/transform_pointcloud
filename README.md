@@ -9,6 +9,8 @@
 + ROS Melodic (on Ubuntu 18.04 LTS, build and run test on [Github Actions](./.github/workflows/melodic.yml))
 + ROS Noetic (on Ubuntu 20.04 LTS, build and run test on [Github Actions](./.github/workflows/noetic.yml))
 
+If you are using ROS2, please check other branches such as [foxy-devel](https://github.com/HHorimoto/transform_pointcloud/tree/foxy-devel).
+
 ## Set Up
 1. Download `transform_pointcloud` package.
 
