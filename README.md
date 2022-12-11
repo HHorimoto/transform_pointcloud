@@ -6,57 +6,14 @@
 ![noetic workflow](https://github.com/HHorimoto/transform_pointcloud/actions/workflows/noetic.yml/badge.svg)
 
 ## Requirement
-+ ROS Melodic (on Ubuntu 18.04 LTS, build and run test on [Github Actions](./.github/workflows/melodic.yml))
-+ ROS Noetic (on Ubuntu 20.04 LTS, build and run test on [Github Actions](./.github/workflows/noetic.yml))
++ ROS1 Melodic (on Ubuntu 18.04 LTS, build and run test on [Github Actions](./.github/workflows/melodic.yml))
++ ROS1 Noetic (on Ubuntu 20.04 LTS, build and run test on [Github Actions](./.github/workflows/noetic.yml))
++ ROS2 Foxy (on Ubuntu 20.04 LTS, build and run test on my computer. It will be running by Github Actions soon.)
 
-If you are using ROS2, please check other branches such as [foxy-devel](https://github.com/HHorimoto/transform_pointcloud/tree/foxy-devel).
-
-## Set Up
-1. Download `transform_pointcloud` package.
-
-```shell
-$ cd ~/catkin_ws/src/
-$ git clone https://github.com/HHorimoto/transform_pointcloud.git
-$ cd ~/catkin_ws
-$ catkin_make
-```
-
-2. Download necessary package for this package.
-
-```shell
-$ sudo apt-get install ros-melodic-pcl-ros # for pcl_ros
-```
-
-## How to Use
-Launch `transform_pointcloud.launch`
-
-```shell
-$ roslaunch transform_pointcloud transform_pointcloud.launch
-```
-
-### Parameters
-
-+ ***topic_in*** : topic (`PointCloud2`) name that you want to transfom.
-    default : `/camera/depth/color/points` (Realsense D435i)
-
-+ ***topic_out*** : topic name after transform.
-    default : `/tf_cloud`
-
-+ ***target_frame*** : link name of transform target.
-    default : `/base_link`
-
-## Test
-This package provides test bash for use with `Github Actions`.
-This test confirms if `topic_out` is published or not by rosbag.
-You can also do this test on your computer by following this command.
-I belive that you can see `Success` not `Fail`.
-
-```shell
-$ roscd transform_pointcloud
-$ bash -xv test/test.bash
-# You can see result.
-$ killall -9 rosmaster # kill roscore
-```
+## How To Use
+Please check following descriptions.  
++ [This](https://github.com/HHorimoto/transform_pointcloud/blob/main/ros1_use.md) is for ROS1 (melodic and noetic).  
++ [This](https://github.com/HHorimoto/transform_pointcloud/blob/foxy-devel/ros2_use.md) is for ROS2 (foxy).  
 
 ## License
 
