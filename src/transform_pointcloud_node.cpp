@@ -23,20 +23,23 @@ namespace transform_pointcloud
   }
   void TransformPointcloudNode::topic_callback(const PointCloud2::SharedPtr in_cloud_)
   {
-    geometry_msgs::msg::TransformStamped transform_stamped;
     try
     {
-      transform_stamped = tf_buffer_->lookupTransform(target_frame_, in_cloud_->header.frame_id, tf2::TimePointZero);
+      if (target_frame_.empty() == false)
+      {
+        if (pcl_ros::transformPointCloud(target_frame_, *in_cloud_, *out_cloud_, *tf_buffer_) == false)
+        {
+          RCLCPP_ERROR(this->get_logger(), "Failed pcl_ros::transformPointCloud target_frame:[%s]", target_frame_.c_str());
+          return;
+        }
+        out_cloud_->header.frame_id = target_frame_;
+        publisher_->publish(*out_cloud_);
+      }
     }
-    catch (tf2::TransformException &ex)
+    catch (std::exception &e)
     {
-      RCLCPP_WARN(this->get_logger(), "Could not transform %s to %s: %s", target_frame_.c_str(), in_cloud_->header.frame_id.c_str(), ex.what());
-      return;
+      RCLCPP_ERROR(this->get_logger(), "%s", e.what());
     }
-    Eigen::Matrix4f mat = tf2::transformToEigen(transform_stamped.transform).matrix().cast<float>();
-    pcl_ros::transformPointCloud(mat, *in_cloud_, *out_cloud_);
-    out_cloud_->header.frame_id = target_frame_;
-    publisher_->publish(*out_cloud_);
   }
 }
 
