@@ -1,0 +1,3 @@
+#!/usr/bin/env python3
+
+from transform_pointcloud.import_module import ....
