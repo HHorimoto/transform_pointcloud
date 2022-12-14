@@ -1,0 +1,61 @@
+name: ROS2 foxy build and run test
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    env:
+      ROS2_WS: /home/runner/work/ros2_ws
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup ROS2
+      uses: ros-tooling/setup-ros@v0.3
+      with:
+        required-ros-distributions: foxy
+
+    - name: Init ROS2 Workspace
+      run: |
+        source /opt/ros/foxy/setup.bash
+        mkdir -p ${ROS2_WS}/src
+        ln -s ${GITHUB_WORKSPACE} ${ROS2_WS}/src/
+    
+    - name: Init perception_pcl
+      run: |
+        source /opt/ros/foxy/setup.bash
+        cd ${ROS2_WS}/src/
+        git clone https://github.com/ros-perception/perception_pcl.git -b foxy-devel
+
+    - name: Install sensor-msgs-py
+      run: sudo apt-get install ros-foxy-sensor-msgs-py
+        
+
+    - name: Pre transform_pointcloud Build
+      run: |
+        source /opt/ros/foxy/setup.bash
+        cd ${ROS2_WS}/src/transform_pointcloud
+        git submodule update --init --recursive
+        rosdep update
+        rosdep install -i -y --from-paths ./
+
+    - name: Pre perception_pcl Build
+      run: |
+        source /opt/ros/foxy/setup.bash
+        cd ${ROS2_WS}/src/perception_pcl
+        git submodule update --init --recursive
+        rosdep update
+        rosdep install -i -y --from-paths ./
+
+    - name: Build Test
+      run: |
+        source /opt/ros/foxy/setup.bash
+        cd ${ROS2_WS}
+        colcon build
+
+    - name: Run Test
+      run: |
+        source /opt/ros/foxy/setup.bash
+        source ${ROS2_WS}/install/setup.bash
+        cd ${ROS2_WS}/src/transform_pointcloud
+        bash -xv ./test/test.bash

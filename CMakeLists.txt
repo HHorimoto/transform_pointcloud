@@ -41,7 +41,8 @@ install(DIRECTORY
 ament_python_install_package(${PROJECT_NAME})
 
 install(PROGRAMS
-  scripts/test.py
+  scripts/test_listener.py
+  scripts/test_talker.py
   DESTINATION lib/${PROJECT_NAME}
 )
 #--- end Python
