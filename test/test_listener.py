@@ -27,18 +27,17 @@ def transform_position(ps_list, source_link, target_link):
     return tf_ps
 
 def callback(msg):
-    points = list(read_points(msg, skip_nans=False, field_names = ("x", "y", "z")))
-    for point in points:
-        x = point[0]
-        y = point[1]
-        z = point[2]
-        if not math.isnan(x) or not math.isnan(y) or not math.isnan(z):
-            tf_ps = transform_position([rospy.get_param('~point_x'),rospy.get_param('~point_y'),rospy.get_param('~point_z')], 
-                                        rospy.get_param('~target_frame'), rospy.get_param('~reference_frame'))
-            if (round(tf_ps.point.x,4) == round(x,4) and round(tf_ps.point.y,4) == round(y,4) and round(tf_ps.point.z,4) == round(z,4)):
-                rospy.loginfo("Run test succeeded")
-            else:
-                rospy.loginfo("Run test failed")
+    point = list(read_points(msg, skip_nans=False, field_names = ("x", "y", "z")))
+    x = point[0][0]
+    y = point[0][1]
+    z = point[0][2]
+    if not math.isnan(x) or not math.isnan(y) or not math.isnan(z):
+        tf_ps = transform_position([rospy.get_param('~point_x'),rospy.get_param('~point_y'),rospy.get_param('~point_z')], 
+                                    rospy.get_param('~target_frame'), rospy.get_param('~reference_frame'))
+        if (round(tf_ps.point.x,4) == round(x,4) and round(tf_ps.point.y,4) == round(y,4) and round(tf_ps.point.z,4) == round(z,4)):
+            rospy.loginfo("Run test succeeded")
+        else:
+            rospy.loginfo("Run test failed")
 
 def listener():
     script_name = os.path.basename(__file__)
