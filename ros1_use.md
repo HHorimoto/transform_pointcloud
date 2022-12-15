@@ -37,13 +37,12 @@ $ roslaunch transform_pointcloud transform_pointcloud.launch
 
 ## Test
 This package provides test bash for use with `Github Actions`.
-This test confirms if `topic_out` is published or not by rosbag.
+This test confirms if this package transforms PointCloud2 correctly.
 You can also do this test on your computer by following this command.
-I belive that you can see `Success` not `Fail`.
 
 ```shell
 $ roscd transform_pointcloud
 $ bash -xv test/test.bash
-# You can see result.
-$ killall -9 rosmaster # kill roscore
+$ echo $?
+0 # It means success. if the number is "1", it means failure. 
 ```
