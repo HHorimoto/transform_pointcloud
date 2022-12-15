@@ -24,8 +24,8 @@ class TestPublisher(object):
                   PointField(name='y', offset=4, datatype=PointField.FLOAT32, count=1),
                   PointField(name='z', offset=8, datatype=PointField.FLOAT32, count=1),]
         points = [[self.x, self.y, self.z],]
-        points = pc2.create_cloud(header, fields, points)
-        self.publisher.publish(points)
+        points_cloud = pc2.create_cloud(header, fields, points)
+        self.publisher.publish(points_cloud)
 
 def main():
     script_name = os.path.basename(__file__)
