@@ -9,5 +9,5 @@
 # Emacs
 .#*
 
-# rosbag
-*.bag
+# log
+*.log

@@ -3,23 +3,24 @@
 # SPDX-FileCopyrightText: 2022 Hiroto Horimoto
 # SPDX-License-Identifier: BSD-3-Clause
 
-### Confirm ros distro ###
-echo $ROS_DISTRO
+# Run Test #
+timeout 10 roslaunch transform_pointcloud test.launch > test.log
 
-### Get rosbag ###
-wget "https://drive.google.com/uc?export=download&id=1MtkzAMVezawFd92f-6CYOH20NQbUgHW3" -O rosbag.bag
+## Test 1 ##
+grep "Run test failed" test.log
+reslt=(`echo $?`)
+if [ $reslt = 0 ]; then
+    echo "Run test failed"
+    exit 1
+fi
 
-### Run roscore in the background ###
-roscore &
-
-sleep 3
-
-### Run test script ###
-if [ $ROS_DISTRO = 'melodic' ]; then
-    python ./test/test_melodic.py
-elif [ $ROS_DISTRO = 'noetic' ]; then
-    python3 ./test/test_noetic.py
+## Test 2 ##
+grep "Run test succeeded" test.log
+reslt=(`echo $?`)
+if [ $reslt = 0 ]; then
+    echo "Run test succeeded"
+    exit 0
 else
-    echo "Other"
-    echo 1
+    echo "Run test failed"
+    exit 1
 fi

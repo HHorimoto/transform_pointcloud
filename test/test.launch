@@ -1,14 +1,36 @@
 <launch>
-    <arg name="topic_in" default="/velodyne_points"/>
-    <arg name="topic_out" default="/tf_cloud"/>
-    <arg name="target_frame" default="/base_link"/>
+    <arg name="topic_in" default="points"/>
+    <arg name="topic_out" default="tf_cloud"/>
+    <arg name="from_frame" default="foo_link"/>
+    <arg name="to_frame" default="bar_link"/>
+
+    <arg name="point_x" default="1.0"/>
+    <arg name="point_y" default="1.0"/>
+    <arg name="point_z" default="1.0"/>
+
     <node pkg="transform_pointcloud" name="transform_pointcloud_node" type="transform_pointcloud_node" output="screen">
         <param name="topic_in" value="$(arg topic_in)"/>
         <param name="topic_out" value="$(arg topic_out)"/>
-        <param name="target_frame" value="$(arg target_frame)"/>
+        <param name="target_frame" value="$(arg to_frame)"/>
     </node>
 
-    <arg name="bag" default="rosbag" />
-    <arg name="bag_path" default="$(find transform_pointcloud)/$(arg bag).bag" />
-    <node name="playbag" pkg="rosbag" type="play" args="--clock $(arg bag_path)" required="false" />
+    <node pkg="tf" type="static_transform_publisher" name="static_transform_publisher" 
+        args="0 0 1.0 0 0 0 $(arg to_frame) $(arg from_frame) 100" />
+
+    <node pkg="transform_pointcloud" name="test_talker" type="test_talker.py" output="screen">
+        <param name="topic_name" value="$(arg topic_in)"/>
+        <param name="reference_frame" value="$(arg from_frame)"/>
+        <param name="point_x" value="$(arg point_x)"/>
+        <param name="point_y" value="$(arg point_y)"/>
+        <param name="point_z" value="$(arg point_z)"/>
+    </node>
+
+    <node pkg="transform_pointcloud" name="test_listener" type="test_listener.py" output="screen">
+        <param name="topic_name" value="$(arg topic_out)"/>
+        <param name="reference_frame" value="$(arg from_frame)"/>
+        <param name="target_frame" value="$(arg to_frame)"/>
+        <param name="point_x" value="$(arg point_x)"/>
+        <param name="point_y" value="$(arg point_y)"/>
+        <param name="point_z" value="$(arg point_z)"/>
+    </node>
 </launch>
