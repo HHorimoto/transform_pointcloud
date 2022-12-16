@@ -27,10 +27,5 @@
 
     <node pkg="transform_pointcloud" name="test_listener" type="test_listener.py" output="screen">
         <param name="topic_name" value="$(arg topic_out)"/>
-        <param name="reference_frame" value="$(arg from_frame)"/>
-        <param name="target_frame" value="$(arg to_frame)"/>
-        <param name="point_x" value="$(arg point_x)"/>
-        <param name="point_y" value="$(arg point_y)"/>
-        <param name="point_z" value="$(arg point_z)"/>
     </node>
 </launch>
