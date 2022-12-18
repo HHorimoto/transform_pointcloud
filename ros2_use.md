@@ -38,3 +38,15 @@ $ ros2 launch transform_pointcloud transform_pointcloud_launch.py
 
 + ***target_frame*** : link name of transform target.
     default : `/base_link`
+
+## Test
+This package provides test bash for use with `Github Actions`.
+This test confirms if msg is published or not.
+You can also do this test on your computer by following this command.
+
+```shell
+$ cd ros2_ws/src/transform_pointcloud/
+$ bash -xv test/test.bash
+$ echo $?
+0 # It means success. if the number is "1", it means failure. 
+```
