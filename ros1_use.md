@@ -37,7 +37,7 @@ $ roslaunch transform_pointcloud transform_pointcloud.launch
 
 ## Test
 This package provides test bash for use with `Github Actions`.
-This test confirms if this package transforms PointCloud2 correctly.
+This test confirms if msg is published or not.
 You can also do this test on your computer by following this command.
 
 ```shell
