@@ -22,22 +22,22 @@ $ source ~/.bashrc
 ```
 
 ## Launch 
-Launch `transform_pointcloud_launch.py`
+Launch `transform_pointcloud.launch.xml`
 
 ```shell
-$ ros2 launch transform_pointcloud transform_pointcloud_launch.py
+$ ros2 launch transform_pointcloud transform_pointcloud.launch.xml
 ```
 
 ### Parameters
 
 + ***topic_in*** : topic (`PointCloud2`) name that you want to transfom.
-    default : `/velodyne_points`
+    default : `velodyne_points`
 
 + ***topic_out*** : topic name after transform.
-    default : `/tf_cloud`
+    default : `tf_cloud`
 
 + ***target_frame*** : link name of transform target.
-    default : `/base_link`
+    default : `base_link`
 
 ## Test
 This package provides test bash for use with `Github Actions`.
