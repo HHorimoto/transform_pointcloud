@@ -1,0 +1,31 @@
+<launch>
+    <arg name="topic_in" default="points"/>
+    <arg name="topic_out" default="tf_cloud"/>
+    <arg name="from_frame" default="foo_link"/>
+    <arg name="to_frame" default="bar_link"/>
+
+    <arg name="point_x" default="1.0"/>
+    <arg name="point_y" default="1.0"/>
+    <arg name="point_z" default="1.0"/>
+
+    <node pkg="transform_pointcloud" exec="transform_pointcloud_node" name="transform_pointcloud_node">
+        <param name="topic_in" value="$(var topic_in)"/>
+        <param name="topic_out" value="$(var topic_out)"/>
+        <param name="target_frame" value="$(var to_frame)"/>
+    </node>
+
+    <node pkg="tf2_ros" exec="static_transform_publisher" name="static_transform_publisher" 
+        args="0 0 1.0 0 0 0 $(var to_frame) $(var from_frame)" />
+
+    <node pkg="transform_pointcloud" exec="test_talker.py" name="test_talker">
+        <param name="topic_name" value="$(var topic_in)"/>
+        <param name="reference_frame" value="$(var from_frame)"/>
+        <param name="point_x" value="$(var point_x)"/>
+        <param name="point_y" value="$(var point_y)"/>
+        <param name="point_z" value="$(var point_z)"/>
+    </node>
+
+    <node pkg="transform_pointcloud"  exec="test_listener.py" name="test_listener">
+        <param name="topic_name" value="$(var topic_out)"/>
+    </node>
+</launch>

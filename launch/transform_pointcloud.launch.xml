@@ -1,0 +1,11 @@
+<launch>
+    <arg name="target_frame" default="base_link"/>
+    <arg name="topic_in" default="velodyne_points"/>
+    <arg name="topic_out" default="tf_cloud"/>
+
+    <node pkg="transform_pointcloud" exec="transform_pointcloud_node" name="transform_pointcloud_node">
+        <param name="target_frame" value="$(var target_frame)"/>
+        <param name="topic_in" value="$(var topic_in)"/>
+        <param name="topic_out" value="$(var topic_out)"/>
+    </node>
+</launch>
